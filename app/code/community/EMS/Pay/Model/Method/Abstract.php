@@ -163,7 +163,6 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
     {
         $fields = [];
         $order = $this->_getOrder();
-
         $billingAddress = $order->getBillingAddress();
         $fields[EMS_Pay_Model_Info::BCOMPANY] = $billingAddress->getCompany();
         $fields[EMS_Pay_Model_Info::BNAME] = $billingAddress->getName();
@@ -174,15 +173,25 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
         $fields[EMS_Pay_Model_Info::BCOUNTRY] = $billingAddress->getCountry();
         $fields[EMS_Pay_Model_Info::BZIP] = $billingAddress->getPostcode();
         $fields[EMS_Pay_Model_Info::BPHONE] = $billingAddress->getTelephone();
+        if($order->canShip()) {
+            $shippingAddress = $order->getShippingAddress();
+            $fields[EMS_Pay_Model_Info::SNAME] = $shippingAddress->getName();
+            $fields[EMS_Pay_Model_Info::SADDR1] = $shippingAddress->getStreet1();
+            $fields[EMS_Pay_Model_Info::SADDR2] = $shippingAddress->getStreet2();
+            $fields[EMS_Pay_Model_Info::SCITY] = $shippingAddress->getCity();
+            $fields[EMS_Pay_Model_Info::SSTATE] = $shippingAddress->getRegion();
+            $fields[EMS_Pay_Model_Info::SCOUNTRY] = $shippingAddress->getCountry();
+            $fields[EMS_Pay_Model_Info::SZIP] = $shippingAddress->getPostcode();
+        } else {
+            $fields[EMS_Pay_Model_Info::SNAME] = $billingAddress->getName();
+            $fields[EMS_Pay_Model_Info::SADDR1] = $billingAddress->getStreet1();
+            $fields[EMS_Pay_Model_Info::SADDR2] = $billingAddress->getStreet2();
+            $fields[EMS_Pay_Model_Info::SCITY] = $billingAddress->getCity();
+            $fields[EMS_Pay_Model_Info::SSTATE] = $billingAddress->getRegion();
+            $fields[EMS_Pay_Model_Info::SCOUNTRY] = $billingAddress->getCountry();
+            $fields[EMS_Pay_Model_Info::SZIP] = $billingAddress->getPostcode();
+        }
 
-        $shippingAddress = $order->getShippingAddress();
-        $fields[EMS_Pay_Model_Info::SNAME] = $shippingAddress->getName();
-        $fields[EMS_Pay_Model_Info::SADDR1] = $shippingAddress->getStreet1();
-        $fields[EMS_Pay_Model_Info::SADDR2] = $shippingAddress->getStreet2();
-        $fields[EMS_Pay_Model_Info::SCITY] = $shippingAddress->getCity();
-        $fields[EMS_Pay_Model_Info::SSTATE] = $shippingAddress->getRegion();
-        $fields[EMS_Pay_Model_Info::SCOUNTRY] = $shippingAddress->getCountry();
-        $fields[EMS_Pay_Model_Info::SZIP] = $shippingAddress->getPostcode();
 
         return $fields;
     }
