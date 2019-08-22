@@ -23,7 +23,6 @@ abstract class EMS_Pay_Model_Method_Cc_Abstract extends EMS_Pay_Model_Method_Abs
     protected function _getMethodSpecificRequestFields()
     {
         $fields = parent::_getMethodSpecificRequestFields();
-        $fields[EMS_Pay_Model_Info::AUTHENTICATE_TRANSACTION] = $this->_is3DSecureEnabled() ? 'true' : 'false';
 
         return $fields;
     }
@@ -56,7 +55,7 @@ abstract class EMS_Pay_Model_Method_Cc_Abstract extends EMS_Pay_Model_Method_Abs
     {
         parent::assignData($data);
         $info = $this->getInfoInstance();
-        $cardType = $data->getData($this->_cardTypeFieldName); 
+        $cardType = $data->getData($this->_cardTypeFieldName);
         if ($cardType) {
             $info->setAdditionalInformation($this->_cardTypeFieldName, $cardType);
             $info->setCcType(Mage::getModel('ems_pay/method_code_mapper')->getHumanReadableByMagentoCode($cardType));
@@ -88,14 +87,6 @@ abstract class EMS_Pay_Model_Method_Cc_Abstract extends EMS_Pay_Model_Method_Abs
         }
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    protected function _is3DSecureEnabled()
-    {
-        return false;
     }
 
     /**

@@ -24,6 +24,7 @@ class EMS_Pay_Model_Info
     const RESPONSE_FAIL_URL = 'responseFailURL';
     const RESPONSE_SUCCESS_URL = 'responseSuccessURL';
     const TRANSACTION_NOTIFICATION_URL = 'transactionNotificationURL';
+    const CHALLENGE_INDICATOR = 'threeDSRequestorChallengeIndicator';
 
     const APPROVAL_CODE = 'approval_code';
     const REFNUMBER = 'refnumber';
@@ -150,7 +151,7 @@ class EMS_Pay_Model_Info
 
     /**
      * Retrieves payment info field label
-     * 
+     *
      * @param string $field
      * @return string
      */

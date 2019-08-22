@@ -12,6 +12,14 @@ class EMS_Pay_Model_Config
     const CHECKOUT_OPTION_CLASSIC = 'classic';
     const CHECKOUT_OPTION_COMBINEDPAGE = 'combinedpage';
 
+    /**
+     *  Challenge indicator options
+     */
+    const CHALLENGE_INDICATOR_1 = 1;
+    const CHALLENGE_INDICATOR_2 = 2;
+    const CHALLENGE_INDICATOR_3 = 3;
+    const CHALLENGE_INDICATOR_4 = 4;
+
     const METHOD_CC = 'ems_pay_cc';
     const METHOD_MASTER_CARD = 'ems_pay_mastercard';
     const METHOD_VISA = 'ems_pay_visa';
@@ -39,7 +47,6 @@ class EMS_Pay_Model_Config
     const GATEWAY_URL_TEST = 'https://test.ipg-online.com/connect/gateway/processing';
     const GATEWAY_URL_PRODUCTION = 'https://www.ipg-online.com/connect/gateway/processing';
 
-    const CONFIG_FIELD_DATA_CAPTURE_MODE = 'data_capture_mode';
     const CONFIG_FIELD_DATA_SPECIFIC_CURRENCY = 'specific_currency';
 
     const XML_CONFIG_OPERATION_MODE = 'payment/ems_pay_general/operation_mode';
@@ -48,16 +55,18 @@ class EMS_Pay_Model_Config
     const XML_CONFIG_STORE_NAME_PRODUCTION = 'payment/ems_pay_general/store_name_production';
     const XML_CONFIG_SHARED_SECRET_TEST = 'payment/ems_pay_general/shared_secret_test';
     const XML_CONFIG_SHARED_SECRET_PRODUCTION = 'payment/ems_pay_general/shared_secret_production';
+    const XML_CONFIG_CHALLENGE_INDICATOR = 'payment/ems_pay_general/challenge_indicator';
+    const XML_CONFIG_DATA_CAPTURE_MODE = 'payment/ems_pay_general/data_capture_mode';
     const XML_CONFIG_LOGGING_ENABLED = 'payment/ems_pay_general/log_enabled';
     const XML_CONFIG_IDEAL_BANK_SELECTION = 'payment/ems_pay_ideal/bank_selection_enabled';
-
 
     const XML_CONFIG_IDEAL_CUSTOMER_ID_SELECTION = 'payment/ems_pay_ideal/customerid_selection_enabled';
     const XML_CONFIG_BANCONTACT_BANK_SELECTION = 'payment/ems_pay_bancontact/bank_selection_enabled';
 
     const XML_CONFIG_CC_TYPES = 'payment/ems_pay_cc/cctypes';
-    const XML_CONFIG_CC_3DSECURE = 'payment/ems_pay_cc/enable_3dsecure';
     const XML_CONFIG_CC_SEPARATE = 'payment/ems_pay_cc/separate';
+
+    const XML_CONFIG_AUTHENTICATE_TRANSACTION = true;
 
     /**
      * Current payment method code
@@ -135,13 +144,13 @@ class EMS_Pay_Model_Config
         'FVLBNL22' => 'van Lanschot',
     );
 
-//    /**
-//     * List of issuing banks supported by Bancontact
-//     *
-//     * @var array
-//     */
-//    protected $_bancontactIssuingBanks = array(
-//
+    /**
+     * List of issuing banks supported by Bancontact
+     *
+     * @var array
+     */
+    protected $_bancontactIssuingBanks = array(
+
 //        'ABERBE22' => 'ABK Bank',
 //        'ARSPBE22' => 'Argenta',
 //        'AXABBE22' => 'AXA BANK EUROPE',
@@ -162,7 +171,7 @@ class EMS_Pay_Model_Config
 //        'BNAGBEBB' => 'Nagelmackers',
 //        'HBKABE22' => 'Record Bank',
 //        'VDSPBE91' => 'VDK Spaarbank',
-//    );
+    );
 
     /**
      * List of maestro debit card types
@@ -290,16 +299,17 @@ class EMS_Pay_Model_Config
     }
 
     /**
+     * @param string $storeId
      * @return string
      */
-    public function getDataCaptureMode()
+    public function getDataCaptureMode($storeId = null)
     {
         if ($this->getCheckoutOption() == self::CHECKOUT_OPTION_COMBINEDPAGE) {
             //combinedpage doesn't support other data capture modes
             return self::DATA_TRANSFER_PAYONLY;
         }
 
-        return $this->getConfigData(self::CONFIG_FIELD_DATA_CAPTURE_MODE);
+        return Mage::getStoreConfig(self::XML_CONFIG_DATA_CAPTURE_MODE, $storeId);
     }
 
     /**
@@ -524,14 +534,6 @@ class EMS_Pay_Model_Config
     }
 
     /**
-     * @return bool
-     */
-    public function isCreditCard3DSecureEnabled()
-    {
-        return Mage::getStoreConfigFlag(self::XML_CONFIG_CC_3DSECURE);
-    }
-
-    /**
      * Check if the device is mobile.
      * Returns true if any type of mobile device detected, including special ones
      *
@@ -541,6 +543,16 @@ class EMS_Pay_Model_Config
     {
         $detect = new Mobile_Detect();
         return $detect->isMobile();
+    }
+
+    /**
+     * @param int $storeId
+     * @return string
+     */
+    public function getChallengeIndicator($storeId = null)
+    {
+        return Mage::getStoreConfig(self::XML_CONFIG_CHALLENGE_INDICATOR, $storeId);
+
     }
 
     /**

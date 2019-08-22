@@ -32,11 +32,4 @@ class EMS_Pay_Model_Method_Maestro extends EMS_Pay_Model_Method_Cc_Abstract
         return $this->_getConfig()->getMaestroCardTypes();
     }
 
-    /**
-     * @inheritdoc
-     */
-    protected function _is3DSecureEnabled()
-    {
-        return true; //Maestro requires 3D Secure to be enabled
-    }
 }
