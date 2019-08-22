@@ -64,3 +64,6 @@ Automatic updates should work flawlessly; as always though, ensure you backup yo
 * Initial release
 = 1.1.8 =
 * version 1.1.8 test releas
+ 
+= 1.0.4 =
+* added functional 3d-secure for magento 1
