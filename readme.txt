@@ -4,7 +4,7 @@ Donate link: https://developer.emspay.eu
 Tags: ems, emspay, payments, woocommerce, e-commerce, webshop, psp, ideal, sofort, credit card, creditcard, visa, mastercard, masterpass, bancontact, bitcoin, paysafecard, direct debit, incasso, sepa, banktransfer, overboeking, betalingen, klarna
 Requires at least: 4.4
 Tested up to: 1.9.4.2
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,3 +70,6 @@ Automatic updates should work flawlessly; as always though, ensure you backup yo
  
 = 1.0.5 =
 * added new functional 3d-secure for magento1
+ 
+= 1.0.6 =
+* added functional 3d-secure for magento1
