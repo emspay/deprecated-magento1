@@ -2,7 +2,7 @@
 <config>
     <modules>
         <EMS_Pay>
-            <version>1.0.3</version>
+            <version>1.0.6</version>
         </EMS_Pay>
     </modules>
     <global>
@@ -66,6 +66,8 @@
                 <operation_mode>test</operation_mode>
                 <log_enabled>1</log_enabled>
                 <checkout_option>classic</checkout_option>
+                <challenge_indicator>1</challenge_indicator>
+                <data_capture_mode>fullpay</data_capture_mode>
                 <shared_secret_test backend_model="adminhtml/system_config_backend_encrypted" />
                 <shared_secret_production backend_model="adminhtml/system_config_backend_encrypted" />
             </ems_pay_general>
@@ -75,7 +77,6 @@
                 <title>Credit card</title>
                 <order_status>processing</order_status>
                 <cctypes>ems_pay_visa,ems_pay_mastercard,ems_pay_diners</cctypes>
-                <enable_3dsecure>1</enable_3dsecure>
             </ems_pay_cc>
             <ems_pay_klarna>
                 <model>ems_pay/method_klarna</model>

@@ -20,7 +20,7 @@
                             <show_in_store>1</show_in_store>
                         </operation_mode>
                         <store_name_test translate="label">
-                            <label>Store name</label>
+                            <label>Store Name Test</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
@@ -32,7 +32,7 @@
                             </depends>
                         </store_name_test>
                         <shared_secret_test translate="label">
-                            <label>Shared secret</label>
+                            <label>Shared Secret Test</label>
                             <frontend_type>obscure</frontend_type>
                             <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
                             <sort_order>20</sort_order>
@@ -45,7 +45,7 @@
                             </depends>
                         </shared_secret_test>
                         <store_name_production translate="label">
-                            <label>Store name</label>
+                            <label>Store Name Production</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
@@ -57,7 +57,7 @@
                             </depends>
                         </store_name_production>
                         <shared_secret_production translate="label">
-                            <label>Shared secret</label>
+                            <label>Shared Secret Production</label>
                             <frontend_type>obscure</frontend_type>
                             <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
                             <sort_order>20</sort_order>
@@ -78,6 +78,24 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </checkout_option>
+                        <challenge_indicator translate="label">
+                            <label>Challenge indicator</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ems_pay/source_challengeIndicator</source_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </challenge_indicator>
+                        <data_capture_mode translate="label">
+                            <label>Data capture mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ems_pay/source_dataTransferMode</source_model>
+                            <sort_order>27</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </data_capture_mode>
                         <log_enabled translate="label">
                             <label>Logging</label>
                             <frontend_type>select</frontend_type>
@@ -133,21 +151,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </order_status>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <cctypes translate="label">
                             <label>Credit Card Types</label>
                             <frontend_type>multiselect</frontend_type>
@@ -158,16 +161,6 @@
                             <show_in_store>0</show_in_store>
                             <can_be_empty>1</can_be_empty>
                         </cctypes>
-                        <enable_3dsecure translate="label">
-                            <label>Enable 3D Secure</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>48</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>0</show_in_store>
-                            <comment>If your credit card agreement includes 3D Secure and your Merchant ID has been activated to use this service.</comment>
-                        </enable_3dsecure>>
                         <specific_currency translate="label">
                             <label>Allowed Currencies</label>
                             <frontend_type>multiselect</frontend_type>
@@ -259,21 +252,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </order_status>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <specific_currency translate="label">
                             <label>Allowed Currencies</label>
                             <frontend_type>multiselect</frontend_type>
@@ -365,21 +343,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </order_status>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <specific_currency translate="label">
                             <label>Allowed Currencies</label>
                             <frontend_type>multiselect</frontend_type>
@@ -471,21 +434,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </order_status>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <specific_currency translate="label">
                             <label>Allowed Currencies</label>
                             <frontend_type>multiselect</frontend_type>
@@ -588,21 +536,6 @@
                             <can_be_empty>1</can_be_empty>
                             <comment>Currencies allowed for this payment method. If none is selected all from the list are allowed.</comment>
                         </specific_currency>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <allowspecific translate="label">
                             <label>Payment from Applicable Countries</label>
                             <frontend_type>allowspecific</frontend_type>
@@ -694,21 +627,6 @@
                             <can_be_empty>1</can_be_empty>
                             <comment>Currencies allowed for this payment method. If none is selected all from the list are allowed.</comment>
                         </specific_currency>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <allowspecific translate="label">
                             <label>Payment from Applicable Countries</label>
                             <frontend_type>allowspecific</frontend_type>
@@ -800,21 +718,6 @@
                             <can_be_empty>1</can_be_empty>
                             <comment>Currencies allowed for this payment method. If none is selected all from the list are allowed.</comment>
                         </specific_currency>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <bank_selection_enabled translate="label">
                             <label>Enable issuer bank selection</label>
                             <frontend_type>select</frontend_type>
@@ -924,21 +827,6 @@
                             <can_be_empty>1</can_be_empty>
                             <comment>Currencies allowed for this payment method. If none is selected all from the list are allowed.</comment>
                         </specific_currency>
-                        <data_capture_mode translate="label">
-                            <label>Data capture mode</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>ems_pay/source_dataTransferMode</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends>
-                                <checkout_option>
-                                    <fieldset>ems_pay_general</fieldset>
-                                    <value>classic</value>
-                                </checkout_option>
-                            </depends>
-                        </data_capture_mode>
                         <allowspecific translate="label">
                             <label>Payment from Applicable Countries</label>
                             <frontend_type>allowspecific</frontend_type>

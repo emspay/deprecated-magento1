@@ -136,6 +136,8 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
                 EMS_Pay_Model_Info::LANGUAGE => $this->_getLanguage(),
                 EMS_Pay_Model_Info::BEMAIL => $this->_getOrder()->getCustomerEmail(),
                 EMS_Pay_Model_Info::MOBILE_MODE => $this->_getMobileMode(),
+                EMS_Pay_Model_Info::AUTHENTICATE_TRANSACTION => EMS_Pay_Model_Config::XML_CONFIG_AUTHENTICATE_TRANSACTION,
+                EMS_Pay_Model_Info::CHALLENGE_INDICATOR => $this->_getChallengeIndicator(),
             );
 
             $fields = array_merge($fields, $this->_getAddressRequestFields());
@@ -221,21 +223,21 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
             $fields[EMS_Pay_Model_Info::HASH] = $this->_getHash();
         }
 
-/* another approach of solving rounding issue - rounding amount added as separate cart issue
- * it's not used for now
-        if ($this->getRoundingAmount()) {
-            $fields[EMS_Pay_Model_Info::CART_ITEM_FIELD_INDEX . $this->_itemFieldsIndex] =
-                $this->getOrderId() . '_rounding' . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
-                'Rounding fee' . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
-                EMS_Pay_Model_Info::SHIPPING_QTY . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
-                $this->getRoundingAmount() . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
-                $this->getRoundingAmount() . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
-                0 . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
-                EMS_Pay_Model_Info::CART_ITEM_SHIPPING_AMOUNT;
+        /* another approach of solving rounding issue - rounding amount added as separate cart issue
+         * it's not used for now
+                if ($this->getRoundingAmount()) {
+                    $fields[EMS_Pay_Model_Info::CART_ITEM_FIELD_INDEX . $this->_itemFieldsIndex] =
+                        $this->getOrderId() . '_rounding' . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
+                        'Rounding fee' . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
+                        EMS_Pay_Model_Info::SHIPPING_QTY . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
+                        $this->getRoundingAmount() . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
+                        $this->getRoundingAmount() . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
+                        0 . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
+                        EMS_Pay_Model_Info::CART_ITEM_SHIPPING_AMOUNT;
 
-            $this->_itemFieldsIndex++;
-        }
-*/
+                    $this->_itemFieldsIndex++;
+                }
+        */
         $fields[EMS_Pay_Model_Info::CART_ITEM_FIELD_INDEX . $this->_itemFieldsIndex] =
             EMS_Pay_Model_Info::SHIPPING_FIELD_NAME . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
             EMS_PAY_MODEL_INFO::SHIPPING_FIELD_LABEL . EMS_Pay_Model_Info::CART_ITEM_FIELD_SEPARATOR .
@@ -300,6 +302,16 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
     protected function _getCheckoutOption()
     {
         return $this->_getConfig()->getCheckoutOption();
+    }
+
+    /**
+     * Retrieves Challenge Indicator option
+     *
+     * @return string
+     */
+    protected function _getChallengeIndicator()
+    {
+        return $this->_getConfig()->getChallengeIndicator();
     }
 
     /**

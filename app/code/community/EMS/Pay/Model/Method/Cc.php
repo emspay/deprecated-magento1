@@ -13,14 +13,6 @@ class EMS_Pay_Model_Method_Cc extends EMS_Pay_Model_Method_Cc_Abstract
     protected $_cardTypeFieldName = 'ems_card_type';
 
     /**
-     * @inheritdoc
-     */
-    protected function _is3DSecureEnabled()
-    {
-        return $this->_getConfig()->isCreditCard3DSecureEnabled();
-    }
-
-    /**
      * @param string $code
      * @return bool
      */
